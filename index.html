@@ -24,7 +24,7 @@
 
 <div class="container-fluid">
 	<h1>Results</h1>
-	<p id="results"></p>
+	<ul id="results"></ul>
 </div>
 <script>
 
@@ -32,11 +32,11 @@ $(document).ready(function() {
 
 	$("#form1").submit(function (event) {
 		var value = $(" input ").val();
-		$( "#results" ).text("search for: " + value);
+		$( "#results" ).text("Loading results for " + value + "...");
 
 		$.get( "/getsuggest/" + value, function( data ) {
-  			$( "#result" ).text( data );
-  			console.log( "Load was performed." );
+  			$( "#results" ).html( data );
+  			console.log( "Load was performed, here is the data: " + data);
 		});
 
 		event.preventDefault();

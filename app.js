@@ -26,7 +26,7 @@ app.get('/getsuggest/:keyword', function (req, res) {
             parseString(completeResponse, function (err, result) {
 			    
 			    var extract = _.pluck(result['toplevel']['CompleteSuggestion'], 'suggestion');
-			    var final_extract = _.map(extract, function(element) {return element[0]["$"]["data"];});
+			    var final_extract = _.map(extract, function(element) {return "<li>"+element[0]["$"]["data"]+"</li>";});
 			    console.log(final_extract);
 			    //res.send(final_extract);
 			    //res.json(200, {"suggestions": final_extract});
