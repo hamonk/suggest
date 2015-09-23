@@ -1,0 +1,27 @@
+{
+  "name": "suggest",
+  "version": "0.1",
+  "description": "google suggest helper",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "http": "0.0.0",
+	"underscore": "1.8.3",
+	"xml2js": "0.4.12",
+    "express": "4.13.3"
+  },
+  "engines": {
+    "node": "0.12.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hamonk/suggest.git"
+  },
+  "keywords": [
+    "google",
+    "suggest"
+  ],
+  "license": "MIT"
+}
