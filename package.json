@@ -1,6 +1,6 @@
 {
   "name": "suggest",
-  "version": "0.1",
+  "version": "0.0.1",
   "description": "google suggest helper",
   "main": "app.js",
   "scripts": {
