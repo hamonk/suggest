@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 	res.sendfile('index.html');
 });
 
-function subsequent_google_call(list_keywords, callback) {
+function subsequent_google_call(err, list_keywords, callback) {
 
     var final_results = {};
 
@@ -21,11 +21,13 @@ function subsequent_google_call(list_keywords, callback) {
     list_keywords.forEach(simple_print);
     // Square each number in the array [1, 2, 3, 4]
     console.log('start subsequent calls for ' + list_keywords);
+
     async.map(list_keywords, call_google, function (err, results) {
       // Square has been called on each of the numbers
       // so we're now done!
       console.log("Finished!");
       console.log(results);
+      //callback(results);
     });
 }
 
@@ -71,7 +73,7 @@ function call_google(keyword, callback) {
                 }               
             });
             //callback(final_res);
-            callback(final_res);
+            callback(null, final_res);
         });
     }).on('error', function (e) {
         console.log('problem with request: ' + e.message);
@@ -89,6 +91,8 @@ app.get('/getsuggest/:keyword', function (req, res) {
     //             });
     call_google(req.params.keyword,
                 subsequent_google_call);
+
+    res.status(200).send("we are done");
 
 });
 
