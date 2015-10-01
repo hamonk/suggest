@@ -37,7 +37,7 @@ app.get('/getsuggest/:keyword', function (req, res) {
     function call_google(keyword, callback) { 
 
         var options = {host: 'suggestqueries.google.com',
-                       path: '/complete/search?output=toolbar&hl=en&q=' + encodeURIComponent(keyword) + '&gl=us'};
+                       path: '/complete/search?output=toolbar&hl=fr&q=' + encodeURIComponent(keyword)};
 
         console.log("call google for " + keyword);
 
