@@ -71,9 +71,17 @@ app.get('/getsuggest/:keyword', function (req, res) {
                         console.log("value: " + final_extract[0]);
                         console.log("callback: " + callback.name);
                         if (callback.name != 'subsequent_google_call') {
-                            final_extract[0] = "<b>" + final_extract[0] + "</b>"
+                            final_extract[0] = "<b>" + final_extract[0] + "</b>";
+                            final_extract = _.map(final_extract, function(element) {return "<li>" + element + "</li>"})
                         }
-                        final_res = final_res.concat(final_extract);
+
+                        if (callback.name != 'subsequent_google_call') {
+                            final_res = final_extract.join("");
+                            final_res = "<ul>" + final_res + "</ul>";
+                        }
+                        else {
+                            final_res = final_res.concat(final_extract);
+                        }
                     }               
                 });
                 
