@@ -22,16 +22,20 @@ app.get('/getsuggest/:keyword', function (req, res) {
         //list_keywords.forEach(simple_print);
         console.log('start subsequent calls for ' + list_keywords);
 
+        var json_results = {};
+
+        console.log("we set the 1st one to " + req.params.keyword);
+        json_results["name"] = "";// req.params.keyword does not fit in the frame
+        json_results["children"] = _.map(list_keywords, function(b) {return {'name':b}});
+
+        //console.log("we set the 1st one to " + json_results["name"]);
+        
         async.map(list_keywords, call_google, function (err, results) {
-          var json_results = {};
-          var first_result = results[0];
-          json_results["name"] = first_result[0];
-          // json_results["children"] = _.map(first_result.slice(1, first_result.length),
-          //                                  function (a) {return {"name":a};});
-          json_results["children"] = _.map(results.slice(1, results.length), 
+        
+          json_results["children"] = _.map(results, 
                 function (a) {
                     return {"name" : a[0],
-                            "children" : _.map(a.slice(1, a.length), 
+                            "children" : _.map(a, 
                                                function(b) {
                                                  return {'name':b};
                                                 })
@@ -43,7 +47,7 @@ app.get('/getsuggest/:keyword', function (req, res) {
           html_answer = _.map(results, function(a) {return "<li>"+a+"</li>"});
           html_answer = "<ul>"+html_answer.join("")+"</ul>"
 
-
+          //console.log("we set the 1st one to " + json_results["name"]);
           callback({'json':json_results, 'html':html_answer});
         });
     }
