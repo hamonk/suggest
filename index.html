@@ -58,11 +58,11 @@ $(document).ready(function() {
   			
   			console.log( "Load was performed, here is the data: " + JSON.stringify(data['html']));
 
-			var width = 800,
-		        height = 800;
+			var width = window.innerWidth * 0.8,
+		        height = window.innerHeight * 0.9;
 
 			var cluster = d3.layout.cluster()
-			    .size([height, width - 160]);
+			    .size([height, width - window.innerWidth * 0.2]);
 
 			var diagonal = d3.svg.diagonal()
 			    .projection(function(d) { return [d.y, d.x]; });
